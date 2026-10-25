@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AZHARIX | College Management System</title>
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<header>
+  <div class="brand"><div class="logo">🎓</div><div>AZHARIX<small>College Management System</small></div></div>
+  <nav><a onclick="showView('home')">Home</a><a onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">Features</a><a onclick="showView('login')">Login</a><button class="primary" onclick="showView('signup')">Sign Up</button></nav>
+</header>
+<main>
+<section id="home" class="view active">
+  <div class="hero">
+    <div><div class="kicker">Smart Education • Better Future</div><h1>Your Education<br><span>Our Priority</span></h1>
+      <p>AZHARIX College Management System helps organize student profiles, attendance, fees, results and college notices in one simple portal.</p>
+      <div class="actions"><button class="primary" onclick="showView('signup')">Get Started</button><button class="outline" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">Learn More</button></div>
+      <div class="stats"><div class="stat"><strong>10+</strong><span>Years of Excellence</span></div><div class="stat"><strong>5000+</strong><span>Happy Students</span></div><div class="stat"><strong>100+</strong><span>Expert Faculty</span></div></div>
+    </div>
+    <div class="campus"><div class="building"><div class="school">🏫</div><strong>AZHARIX COLLEGE</strong><small>Smart Education • Better Future</small><p style="margin:8px 12px">Learn • Grow • Succeed</p></div></div>
+  </div>
+  <div style="text-align:center;margin:22px 0 4px;color:#07316c;font-size:12px;font-weight:800;letter-spacing:.8px">Powered by AZHAR</div>
+  <div id="features" class="features">
+    <div class="feature"><div class="ico">🎓</div><b>Student Dashboard</b><p>Student profile, academic overview and quick access to college services.</p></div>
+    <div class="feature"><div class="ico">📅</div><b>Attendance Tracking</b><p>Attendance summaries and monthly records.</p></div>
+    <div class="feature"><div class="ico">💳</div><b>Fees Management</b><p>Fee totals, paid status and outstanding balances.</p></div>
+    <div class="feature"><div class="ico">📊</div><b>Results & Reports</b><p>Monthly results, subjects, marks and grades.</p></div>
+    <div class="feature"><div class="ico">📢</div><b>Notice Board</b><p>Exam schedules, events and college announcements.</p></div>
+    <div class="feature"><div class="ico">🛡️</div><b>Role-based Access</b><p>Separate views for students, teachers, parents and administrators.</p></div>
+  </div>
+</section>
+
+<section id="login" class="view">
+ <div class="authwrap"><div class="brand"><div class="logo">🎓</div><div>AZHARIX<small>College Management System</small></div></div>
+ <h2>Welcome Back</h2><p class="sub">Sign in to your college portal</p>
+ <label>Email or College ID</label><input id="loginId" placeholder="Enter email or college ID">
+ <label>Password</label><input id="loginPassword" type="password" placeholder="Enter password">
+ <button class="primary full" onclick="demoLogin()">Login to Preview</button>
+ <p class="small">New here? <a onclick="showView('signup')">Create an account</a></p>
+ <div class="stepnote">Demo preview only: this login does not authenticate a real account or connect to a database.</div></div>
+</section>
+
+<section id="signup" class="view">
+ <div class="authwrap"><div class="brand"><div class="logo">🎓</div><div>AZHARIX<small>College Management System</small></div></div>
+ <h2 id="signupTitle">Create Account</h2><p class="sub" id="signupSub">Choose your role and start registration</p>
+ <div class="roles">
+  <button class="role selected" data-role="Student" onclick="pickRole(this)">🎓<br>Student</button>
+  <button class="role" data-role="Teacher" onclick="pickRole(this)">👨‍🏫<br>Teacher</button>
+  <button class="role" data-role="Parent" onclick="pickRole(this)">👪<br>Parent</button>
+  <button class="role" data-role="Admin" onclick="pickRole(this)">🛡️<br>Admin</button>
+ </div>
+ <div id="step1">
+  <label>Full Name</label><input id="fullName" placeholder="Enter your full name">
+  <label>Gmail Address</label><input id="email" type="email" placeholder="you@gmail.com">
+  <button class="primary full" onclick="nextStep()">Next: Email Verification</button>
+ </div>
+ <div id="step2" style="display:none">
+  <div class="stepnote">A real system sends a six-digit code to your email. This preview only demonstrates the screen; it does not send an email or generate a real OTP.</div>
+  <label>6-digit Verification Code</label><input id="otp" inputmode="numeric" maxlength="6" placeholder="Enter demo code 123456">
+  <button class="primary full" onclick="verifyDemo()">Verify Code</button><button class="outline full" onclick="goStep(1)">Back</button>
+ </div>
+ <div id="step3" style="display:none">
+  <label id="collegeIdLabel">Student / College ID</label><input id="collegeId" placeholder="Enter college-issued ID">
+  <label>Profile Photo (optional in this preview)</label><input id="photo" type="file" accept="image/*">
+  <label>Password (minimum 8 characters)</label><input id="password" type="password" placeholder="Create password">
+  <label>Confirm Password</label><input id="confirmPassword" type="password" placeholder="Confirm password">
+  <button class="primary full" onclick="finishDemo()">Create Demo Account</button><button class="outline full" onclick="goStep(2)">Back</button>
+ </div>
+ <p class="small">Already have an account? <a onclick="showView('login')">Login</a></p>
+ <div id="signupMsg" class="stepnote">Preview mode — account data is not saved to a server.</div>
+ </div>
+</section>
+
+<section id="dashboard" class="view">
+ <div class="dash">
+  <aside class="sidebar"><div class="brand"><div class="logo">🎓</div><div>AZH<small>Student Portal</small></div></div>
+   <button class="sidebtn active" onclick="dashboardTab('Dashboard',this)">▦ <span>Dashboard</span></button>
+   <button class="sidebtn" onclick="dashboardTab('My Profile',this)">👤 <span>My Profile</span></button>
+   <button class="sidebtn" onclick="dashboardTab('Results',this)">▤ <span>Results</span></button>
+   <button class="sidebtn" onclick="dashboardTab('Attendance',this)">📅 <span>Attendance</span></button>
+   <button class="sidebtn" onclick="dashboardTab('Fees',this)">💳 <span>Fees</span></button>
+   <button class="sidebtn" onclick="dashboardTab('Time Table',this)">🗓 <span>Time Table</span></button>
+   <button class="sidebtn" onclick="dashboardTab('Notices',this)">📢 <span>Notices</span></button>
+   <button class="sidebtn" onclick="showView('home')">↩ <span>Logout / Home</span></button>
+  </aside>
+  <div class="dashmain"><div class="dashhead"><div><h2 id="dashTitle">Welcome Back, Student!</h2><small style="color:var(--muted)">Keep going! Your future is bright.</small></div><button class="outline" onclick="showView('home')">Home</button></div>
+   <div id="dashContent"><div class="cards"><div class="metric">🟢<small>Attendance</small><strong>92%</strong><small>Demo data</small></div><div class="metric">💳<small>Fees Status</small><strong>Paid</strong><small>Sample only</small></div><div class="metric">📊<small>Total Marks</small><strong>876/1100</strong><small>Demo result</small></div><div class="metric">🏆<small>Class Rank</small><strong>5</strong><small>Sample rank</small></div></div>
+   <div class="panel"><h3>Recent Notices</h3><div class="notice">📘 Annual Sports Day <small>Event information — sample notice</small></div><div class="notice">📝 Mid Term Exam Schedule <small>Check your timetable — sample notice</small></div><div class="notice">💳 Fee Payment Reminder <small>Demo notice only</small></div></div></div>
+  </div>
+ </div>
+ <div class="stepnote">یہ dashboard پری ویو ہے؛ اس کے نمبر، فیس اور رزلٹ نمونہ ہیں، کالج کا حقیقی ریکارڈ نہیں۔</div>
+</section>
+</main>
+<footer><strong style="display:block;color:#07316c;margin-bottom:6px">Powered by AZHAR</strong>© 2026 AZHARIX College Management System • Interactive local preview</footer>
+<script src="script.js" defer></script>
+
+</body>
+</html>
